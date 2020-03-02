@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-4">&nbsp;</div>
+  <div class="col-4">
+
+    <!-- REACTIVE FORM -->
+
+    <div class="wrapper">
+        <div class="row">
+          <div class="col-xs-12">
+            <form [formGroup]="signupForm" (ngSubmit)="signup()">
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Email"
+                  formControlName="email"
+                  name="email"
+                />
+                <mat-error *ngIf="form.email.hasError('required')">
+                  Email is required
+                </mat-error>
+                <mat-error *ngIf="form.email.hasError('email')"
+                  >Email is invalid</mat-error
+                >
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Password"
+                  type="password"
+                  formControlName="password"
+                  name="password"
+                />
+                <mat-error
+                  *ngIf="form.password.errors && form.password.errors.required"
+                  >Password is required</mat-error
+                >
+                <mat-error *ngIf="form.password.hasError('minlength')"
+                  >Password must be at least 6 characters
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Name"
+                  type="text"
+                  formControlName="name"
+                  name="name"
+                />
+                <mat-error *ngIf="form.name.errors && form.name.errors.required"
+                  >Name is required</mat-error
+                >
+                <mat-error *ngIf="form.name.invalid">Name is invalid</mat-error>
+              </mat-form-field>
+              <div class="signup-form-buttons">
+                <button
+                  mat-button
+                  type="submit"
+                  class="button"
+                  [disabled]="signupForm.invalid"
+                >
+                  Sign up
+                </button>
+                <a routerLink="/login">Login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-4">&nbsp;</div>
+</div>
+
+  

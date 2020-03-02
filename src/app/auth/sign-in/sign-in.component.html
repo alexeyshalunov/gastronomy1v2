@@ -1,0 +1,86 @@
+<!-- TEMPLATE DRIVEN FORM -->
+
+<div class="row">
+  <div class="col-6 offset-3">
+
+
+
+          <h1 *ngIf="authenticationService && authenticationService.userData | async">Hello
+            {{ (authenticationService.userData | async)?.email }}</h1>
+          <div *ngIf="!(authenticationService.userData | async)">
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="text" class="form-control" [(ngModel)]="email" placeholder="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" [(ngModel)]="password" id="pwd" placeholder="password">
+            </div>
+            
+            <div class="text-center">
+              <button (click)="signUp()" class="btn btn-default">Sign Up</button>
+              <button (click)="signIn()" class="btn btn-default" style="margin-left:5px;">Login</button>
+            </div>
+            
+
+          </div>
+          <button (click)="signOut()" class="btn btn-primary"
+            *ngIf="authenticationService.userData | async">Logout</button>
+
+
+
+  </div>
+</div>
+
+  <!-- <div class="row">
+  <div class="col-4">&nbsp;</div>
+  <div class="col-4">
+
+        <form #f="ngForm" (ngSubmit)="login(f.value)">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Email"
+              [(ngModel)]="user.email"
+              name="email"
+              #email="ngModel"
+              required
+              email
+            />
+            <mat-error *ngIf="email.invalid && email.errors.required"
+              >Email is required</mat-error
+            >
+            <mat-error *ngIf="email.invalid && email.errors.email"
+              >Email must be a valid email address</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Password"
+              type="password"
+              [(ngModel)]="user.password"
+              name="password"
+              #password="ngModel"
+              required
+            />
+            <mat-error *ngIf="password.invalid && password.errors.required"
+              >Password is required</mat-error
+            >
+          </mat-form-field>
+          <div class="login-form-buttons">
+            <button
+              mat-button
+              type="submit"
+              class="button"
+              [disabled]="f.invalid"
+            >
+              Login
+            </button>
+            <a routerLink="/signup">Sign up</a>
+          </div>
+        </form>
+
+  </div>
+  <div class="col-4">&nbsp;</div>
+</div> -->

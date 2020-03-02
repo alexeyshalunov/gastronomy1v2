@@ -1,0 +1,95 @@
+<h1 style="margin-top: 25px;">
+  {{title}}
+</h1>
+
+<!-- Enter New Dish Block -->
+<div class="new-dish-wrapper active visible">
+
+  <h2 class="text-center">Enter New Dish</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="studentName" placeholder="Dish Name" name="studentName">
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="studentAge" placeholder="Dish Description" name="studentAge">
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control" [(ngModel)]="studentAddress" placeholder="Dish Image Path"
+        name="studentAddress">
+    </div>
+    <div class="col-md-3">
+      <button type="button" (click)="CreateRecord()" [disabled]="!studentName || !studentAge || !studentAddress"
+        class="btn btn-primary">+
+        Create Dish</button>
+    </div>
+  </div>
+
+</div>
+<!-- End Enter New Dish Block -->
+
+
+<!-- Dishes Listing -->
+<div class="dishes-listing">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-4" *ngFor="let item of students">
+        
+        <mat-card *ngIf="!item.isEdit; else elseBlock" class="dish-card">
+          <img mat-card-image src="{{item.Address}}" alt="Dish">
+
+          <mat-card-content>
+
+            <mat-card-header>
+              <mat-card-title>{{item.Name}}</mat-card-title>
+            </mat-card-header>            
+            <p>
+              {{item.Age}}
+            </p>
+
+          </mat-card-content>          
+
+          <mat-card-actions align="end">
+            <div class="button-block active visible">
+              <button mat-button (click)="EditRecord(item)">Edit</button>
+              <button mat-button (click)="RemoveRecord(item.id)">Delete</button>
+            </div>
+          </mat-card-actions>          
+          
+        </mat-card>
+
+        <ng-template #elseBlock>
+
+          <mat-card>
+            <mat-card-content>
+              <h3>Edit</h3>
+
+              <div>
+                <input type="text" class="form-control" [(ngModel)]="item.EditName" placeholder="Edit Dish Name">
+              </div>
+              <div>
+                <textarea class="form-control" [(ngModel)]="item.EditAge"
+                  placeholder="Edit Dish Description"></textarea>
+              </div>
+              <div>
+                <input type="text" class="form-control" [(ngModel)]="item.EditAddress"
+                  placeholder="Edit Dish Image Path">
+              </div>
+
+              <mat-card-actions align="end">
+                <div class="button-block active visible">
+                  <button mat-button (click)="item.isEdit = false">Cancel</button>
+                  <button mat-button (click)="UpdateRecord(item)">Update</button>
+                </div>
+              </mat-card-actions>
+
+            </mat-card-content>
+          </mat-card>
+
+      </ng-template>
+
+    </div>
+  </div>
+</div>
+<!-- End Dishes Listing -->
